@@ -8,13 +8,13 @@ import DeleteBook from "./pages/DeleteBook";
 function App() {
   return (
     <>
-      <Route>
-        <Routes path="/" element={<Home />} />
-        <Routes path="/books/create" element={<CreateBook />} />
-        <Routes path="/books/detail/:id" element={<ShowBook />} />
-        <Routes path="/books/edit/:id" element={<EditBook />} />
-        <Routes path="/books/delete/:id" element={<DeleteBook />} />
-      </Route>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/create" element={<CreateBook />} />
+        <Route path="/detail/:id" element={<ShowBook />} />
+        <Route path="/edit/:id" element={<EditBook />} />
+        <Route path="/delete/:id" element={<DeleteBook />} />
+      </Routes>
     </>
   );
 }
