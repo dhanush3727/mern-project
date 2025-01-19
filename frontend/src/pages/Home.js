@@ -23,7 +23,7 @@ const Home = () => {
       axios
         .delete(`http://localhost:5000/books/${id}`)
         .then((res) => {
-          console.log(res.data);
+          window.location.reload();
           alert("Book Deleted Successfully");
         })
         .catch((err) => {
