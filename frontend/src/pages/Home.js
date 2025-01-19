@@ -7,12 +7,30 @@ import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/books")
       .then((res) => setBooks(res.data))
       .catch((err) => console.log(err));
   }, []);
+
+  const handleDeleteBook = (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want delete this book ?"
+    );
+    if (confirmDelete) {
+      axios
+        .delete(`http://localhost:5000/books/${id}`)
+        .then((res) => {
+          console.log(res.data);
+          alert("Book Deleted Successfully");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
 
   return (
     <div className="p-4">
@@ -62,9 +80,10 @@ const Home = () => {
                   <Link to={`/edit/${book._id}`}>
                     <AiOutlineEdit className="text-2xl text-yellow-600" />
                   </Link>
-                  <Link to={`/delete/${book._id}`}>
-                    <MdOutlineDelete className="text-2xl text-red-600" />
-                  </Link>
+                  <MdOutlineDelete
+                    className="text-2xl text-red-600 cursor-pointer"
+                    onClick={() => handleDeleteBook(book._id)}
+                  />
                 </div>
               </td>
             </tr>
